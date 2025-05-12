@@ -1,0 +1,60 @@
+const userChoices = ["rock", "paper", "scissors"];
+
+function getUserChoice(userInput, cheatCode) {
+  userInput = userInput.toLowerCase();
+  if (userChoices.includes(userInput)) {
+    return userInput;
+  } else if (userInput === "bomb") {
+    return userInput;
+  } else {
+    console.log("Wrong input");
+  }
+}
+
+function getComputerChoice() {
+  let ComputerChoice = Math.floor(Math.random() * 4);
+  if (ComputerChoice === 1) {
+    return "rock";
+  } else if (ComputerChoice === 0) {
+    return "scissors";
+  } else {
+    return "paper";
+  }
+}
+
+function determineWinner(userChoice, computerChoice) {
+  if (userChoice == computerChoice) {
+    return "tie";
+  } else if (userChoice === "rock") {
+    if (computerChoice === "paper") {
+      return "Computer Wins";
+    } else if (computerChoice === "scissors") {
+      return "User Wins";
+    }
+  } else if (userChoice === "scissors") {
+    if (computerChoice === "paper") {
+      return "User Wins";
+    } else if (computerChoice === "rock") {
+      return "Computer Wins";
+    }
+  } else if (userChoice === "paper") {
+    if (computerChoice === "rock") {
+      return "User Wins";
+    } else if (computerChoice === "scissors") {
+      return "Computer Wins";
+    }
+  } else if (userChoice === "bomb") {
+    return "ULTIMATE WEAPON! YOU WIIIIIN";
+  }
+}
+
+function playGame(userInput, cheatCode) {
+  let userChoice = getUserChoice(userInput, cheatCode);
+  console.log("the user's choice is", userChoice);
+  let computerChoice = getComputerChoice();
+  console.log("the computer's choice is", computerChoice);
+  let result = determineWinner(userChoice, computerChoice);
+  return result;
+}
+
+console.log(playGame("bomb"));
