@@ -1,0 +1,73 @@
+function getSleepHours(day){
+  day = day.toLowerCase()
+  if(day === 'monday'){
+    return 5
+  } else if(day === 'tuesday'){
+    return 4
+  } else if(day === 'wednesday'){
+    return 9
+  }  else if(day === 'thursday'){
+    return 3
+  } else if(day === 'friday'){
+    return 4
+  } else if(day === 'saturday'){
+    return 6
+  } else if(day === 'sunday'){
+    return 10
+  } else{
+    return 'Invalid day'
+  }
+}
+
+/* SWITCH METHOD
+function getSleepHours(day){
+  day = day.toLowerCase();
+  switch(day) {
+    case 'monday':
+      return 5;
+    case 'tuesday':
+      return 4;
+    case 'wednesday':
+      return 9;
+    case 'thursday':
+      return 3;
+    case 'friday':
+      return 4;
+    case 'saturday':
+      return 6;
+    case 'sunday':
+      return 10;
+    default:
+      return 'Invalid day';
+  }
+}
+*/
+function getActualSleepHours(){
+  let actualSleepHours = getSleepHours('monday') + getSleepHours('tuesday') + getSleepHours('wednesday') + getSleepHours('thursday') + getSleepHours('friday') + getSleepHours('saturday') + getSleepHours('sunday')
+  return actualSleepHours
+}
+
+function getIdealSleepHours(){
+  let idealHours = 5
+  return idealHours * 7 
+}
+
+function calculateSleepDebt(){
+  let actualSleepHours = getActualSleepHours()
+  let idealSleepHours = getIdealSleepHours()
+  let msg = ''
+  let hours = 0
+  if(actualSleepHours === idealSleepHours){
+    msg =  'You got the perfect amount of sleep'
+  } else if(actualSleepHours > idealSleepHours){
+    hours = actualSleepHours - idealSleepHours
+    msg =  'You got more sleep than needed: Excess hours ' + hours
+  } else if(actualSleepHours < idealSleepHours){
+    hours = idealSleepHours - actualSleepHours
+    msg =  'You should get some rest: Needed hours ' + hours
+  }
+  return msg
+}
+
+
+console.log(calculateSleepDebt())
