@@ -1,0 +1,123 @@
+
+Skip to content
+Search Gists
+All gists
+Back to GitHub
+@NihelPages
+NihelPages/Rock-Paper-Scissors-Bomb.ts Secret
+Created May 12, 2025 16:31 • Report abuse
+
+Code
+Revisions 1
+Clone this repository at &lt;script src=&quot;https://gist.github.com/NihelPages/e5409dac03daa7283abebcbdf27f57c1.js&quot;&gt;&lt;/script&gt;
+Rock-Paper-Scissors-Bomb.ts
+const USER_WINS_TEXT = "User Wins";
+const COMPUTER_WINS_TEXT = "Computer Wins";
+
+const GAME_OPTIONS = {
+  ROCK: "rock",
+  PAPER: "paper",
+  SCISSORS: "scissors",
+};
+
+//  check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
+Object.freeze(GAME_OPTIONS);
+
+const JOCKER_OPTION = "bomb";
+
+const userChoices = Object.values(GAME_OPTIONS);
+
+function getUserChoice(userInput) {
+  userInput = userInput.toLowerCase();
+
+  if (userChoices.includes(userInput) || userInput === JOCKER_OPTION) {
+    return userInput;
+  }
+
+  console.log("Wrong input");
+}
+
+function getComputerChoice() {
+  let ComputerChoice = Math.floor(Math.random() * 4);
+
+  if (ComputerChoice === 1) {
+    return GAME_OPTIONS.ROCK;
+  }
+
+  if (ComputerChoice === 0) {
+    return GAME_OPTIONS.SCISSORS;
+  }
+
+  return GAME_OPTIONS.PAPER;
+}
+
+function determineWinner(userChoice, computerChoice) {
+  if (userChoice === computerChoice) {
+    return "tie";
+  }
+
+  if (userChoice === JOCKER_OPTION) {
+    return "ULTIMATE WEAPON! YOU WIIIIIN";
+  }
+
+  if (userChoice === GAME_OPTIONS.ROCK) {
+    if (computerChoice === GAME_OPTIONS.PAPER) {
+      return COMPUTER_WINS_TEXT;
+    }
+
+    if (computerChoice === GAME_OPTIONS.SCISSORS) {
+      return USER_WINS_TEXT;
+    }
+  }
+
+  if (userChoice === GAME_OPTIONS.SCISSORS) {
+    if (computerChoice === GAME_OPTIONS.PAPER) {
+      return USER_WINS_TEXT;
+    }
+
+    if (computerChoice === GAME_OPTIONS.ROCK) {
+      return COMPUTER_WINS_TEXT;
+    }
+  }
+
+  if (userChoice === GAME_OPTIONS.PAPER) {
+    if (computerChoice === GAME_OPTIONS.ROCK) {
+      return USER_WINS_TEXT;
+    }
+
+    if (computerChoice === GAME_OPTIONS.SCISSORS) {
+      return COMPUTER_WINS_TEXT;
+    }
+  }
+
+
+}
+
+function playGame(userInput) {
+  let userChoice = getUserChoice(userInput);
+  console.log("the user's choice is", userChoice);
+
+  let computerChoice = getComputerChoice();
+  console.log("the computer's choice is", computerChoice);
+
+  let result = determineWinner(userChoice, computerChoice);
+
+  return result;
+}
+
+console.log(playGame(JOCKER_OPTION));
+@SnailCodeX
+Comment
+
+Leave a comment
+Footer
+© 2025 GitHub, Inc.
+Footer navigation
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact
+
