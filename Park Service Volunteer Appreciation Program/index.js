@@ -17,7 +17,7 @@ function combineVolunteers(volunteers) {
 }
 function isVerified(verified) {
     if (typeof verified === "string") {
-        verified = verified === "yes" ? true : false;
+        verified = verified === "Yes" ? true : false;
     }
     return verified; // return boolean true or false
 }
